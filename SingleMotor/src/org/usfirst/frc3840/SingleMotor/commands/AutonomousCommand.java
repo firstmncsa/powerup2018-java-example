@@ -1,5 +1,6 @@
 
 package org.usfirst.frc3840.SingleMotor.commands;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**

@@ -1,7 +1,7 @@
 
 package org.usfirst.frc3840.SingleMotor;
 
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -16,11 +16,11 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 public class RobotMap {
    
-    public static TalonSRX runMotor1TalonSRX1;
+    public static WPI_TalonSRX runMotor1TalonSRX1;
 
     public static void init() {
     
-        runMotor1TalonSRX1 = new TalonSRX(1);
+        runMotor1TalonSRX1 = new WPI_TalonSRX(1);
         LiveWindow.addActuator("Test Motor", "One", (Sendable) runMotor1TalonSRX1);
    
     }
