@@ -87,14 +87,14 @@ public class Robot extends TimedRobot {
 		// This will look for NULL as the text value for the gameData, if seen, it will set the gameData to be a null value.
 		// This will help you test for null value handling in your code.
 		// null values are possible if the DS does not receive the game data from FMS before you ask for it via getGameSpecificMessage.
-		// If you have concerns about this interfering during competion, comment the following line out.
+		// If you have concerns about this interfering during competition, comment the following line out.
 		// However, FMS should NEVER send a string that says null, so it's safe to leave this in.
 		// To test, enter NULL as text for the Game Data in the DS, this will result in a null value in gameData
 		// which will cause a timeout for gameData being received and thus duplicate all possible competition scenarios.
 		// NOTE!! If you are changing values on the drivers station to test, please note there is sometimes a lag between
 		// the value you set and what is received via getGameSpecifcMessage. Give it 5-10 seconds before testing after changing.
 		// You can monitor or verify using the NetworkTables outline viewer or shuffleboard, look at the GameSpecificMessage value
-		// in FMSInfo
+		// in FMSInfo. The following line of code is also in the loop below, comment them both out if concerned.
 		gameData = (gameData.equals("NULL")) ? null : gameData;
 				
 		// Start the timer for how long to wait for gameData to be received from FMS.
