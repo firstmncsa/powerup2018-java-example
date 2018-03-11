@@ -119,7 +119,7 @@ public class Robot extends TimedRobot {
 			}
 		}
 
-		// Check if gameData is still null, if so, than we timed out and need to either call a default auto, or set gameData to something
+		// Check if gameData is still null, if so, then we timed out and need to either call a default auto, or set gameData to something
 		// that can signal we didn't receive gameData in time and act accordingly.
 		if (gameData == null) {
 			System.out.println("autonomousInit: Game Data not received before timeout, using autonomous command fallback: AutonoumousCommand");
