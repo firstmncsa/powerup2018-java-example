@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-
 /**
  *  Drive Train SubSystem.
  */
@@ -19,7 +18,6 @@ public class DriveTrain extends Subsystem {
     @Override
     public void initDefaultCommand() {
        
-        // Set the default command for a subsystem here.
     	// Set the default command for a subsystem here.
          setDefaultCommand(new DriveRobot());
     }
@@ -27,7 +25,7 @@ public class DriveTrain extends Subsystem {
     @Override
     public void periodic() {
         // Put code here to be run every loop
-
+        // ***Added encoder reads here...
     }
 
     // Put methods for controlling this subsystem
@@ -42,14 +40,13 @@ public class DriveTrain extends Subsystem {
     	SmartDashboard.putNumber("Speed X: ", stickX);
     	SmartDashboard.putNumber("Speed Y: ", stickY);
     	//Checks for min joystick input
-    	if(Math.abs(stickX) > joyThreshold|| Math.abs(stickY) > joyThreshold || true) { 
+    	if(Math.abs(stickX) > joyThreshold|| Math.abs(stickY) > joyThreshold) { 
     		arcadeTrain.arcadeDrive(stickX, stickY, false);
     	}
     }
     
    //Stop motion for acrcade drive
     public void StopMotion() {
-    	
     	arcadeTrain.stopMotor();
     }
     
