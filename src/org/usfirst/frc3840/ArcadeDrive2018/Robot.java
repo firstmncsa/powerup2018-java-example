@@ -57,7 +57,7 @@ public class Robot extends TimedRobot {
 		gameData = null;
 
 		// Set how long to wait in seconds for gameData to be received before giving up.
-		// Note: Set this to be 1 second less than the difference between your longest autonomous mode 
+		// NOTE: Set this to be 1 second less than the difference between your longest autonomous mode 
 		// and the 15 seconds in autonomous. eg; scale auto for far side takes 12 seconds, set this to 2.0
 		// 15 - 12 - 1 = 2
 		// Set this to be 0 if you don't want to wait
@@ -109,14 +109,14 @@ public class Robot extends TimedRobot {
 
 		// Loop until we get valid gameData or we timeout. Use Double.compare to ensure we do double comparison properly.
 		while (true) {
-			// First thing we do is check to see if we don't have data or our gameData time out has not occured yet.
-			// If either are not true, aka, if we have gameData or our time out expired, drop out of the loop, if not delay
+			// First thing we do is check to see if we don't have data or our gameData time out has not occurred yet.
+			// If either are not true, AKA, if we have gameData or our time out expired, drop out of the loop, if not delay
 			// a bit and then continue on with the loop.
 			if (gameData == null && Double.compare(gameDataTimer.get(), gameDataTimeout) <= 0) {
 				Timer.delay(0.02);
 			}
 			else {
-				// We have game data or time out has occured.
+				// We have game data or time out has occurred.
 				break;
 			}
 			
