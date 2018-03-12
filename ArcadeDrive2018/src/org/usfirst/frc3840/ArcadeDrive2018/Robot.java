@@ -95,8 +95,8 @@ public class Robot extends TimedRobot {
 		// the value you set and what is received via getGameSpecifcMessage. Give it 5-10 seconds before testing after changing.
 		// You can monitor or verify using the NetworkTables outline viewer or shuffleboard, look at the GameSpecificMessage value
 		// in FMSInfo. The following line of code is also in the loop below, comment them both out if concerned.
-		gameData = ("NULL".equals(gameData)) ? null : gameData;
-				
+		gameData = ("NULL".equalsIgnoreCase(gameData)) ? null : gameData;
+
 		// Start the timer for how long to wait for gameData to be received from FMS.
 		gameDataTimer.reset();
 		gameDataTimer.start();
@@ -109,9 +109,9 @@ public class Robot extends TimedRobot {
 		while (gameData == null && Double.compare(gameDataTimer.get(), gameDataTimeout) <= 0) {
 			// Try to get gameData again.
 			gameData = DriverStation.getInstance().getGameSpecificMessage();
-						
+
 			// See DS / FMS testing note above for more details on this.
-			gameData = ("NULL".equals(gameData)) ? null : gameData;
+			gameData = ("NULL".equalsIgnoreCase(gameData)) ? null : gameData;
 			
 			// If needed, delay a bit before possibly checking again.
 			if (gameData == null) {
@@ -119,7 +119,7 @@ public class Robot extends TimedRobot {
 			}
 		}
 
-		// Check if gameData is still null, if so, then we timed out and need to either call a default auto, or set gameData to something
+		// Check if gameData is still null, if so, then we timed out and need to either call a default autonomous command, or set gameData to something
 		// that can signal we didn't receive gameData in time and act accordingly.
 		if (gameData == null) {
 			System.out.println("autonomousInit: Game Data not received before timeout, using autonomous command fallback: AutonoumousCommand");
