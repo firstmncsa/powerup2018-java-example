@@ -62,7 +62,9 @@ public class Robot extends TimedRobot {
 		// 15 - 12 - 1 = 2
 		// Set this to be 0 if you don't want to wait
 		// This is a double so you can use fractions of a second in decimal for fine grained control.
-		gameDataTimeout = 0;
+		// NOTE: You could make this a shuffleboard / smartdashboard entry, or use a look up table, etc... Just be careful
+		// of the items to consider above in this comment block.
+		gameDataTimeout = 0.0;
 	}
 
 	/**
@@ -105,18 +107,25 @@ public class Robot extends TimedRobot {
 		// the auto periodic call to do ensure we have data. This example will document the former.
 		// contact firstmn.csa@gmail.com for the latter if you want to see the difference.
 
-		// Loop until we can valid gameData or we timeout. Use Double.compare to ensure we do double checking properly.
-		while (gameData == null && Double.compare(gameDataTimer.get(), gameDataTimeout) <= 0) {
+		// Loop until we get valid gameData or we timeout. Use Double.compare to ensure we do double comparison properly.
+		while (true) {
+			// First thing we do is check to see if we don't have data or our gameData time out has not occured yet.
+			// If either are not true, aka, if we have gameData or our time out expired, drop out of the loop, if not delay
+			// a bit and then continue on with the loop.
+			if (gameData == null && Double.compare(gameDataTimer.get(), gameDataTimeout) <= 0) {
+				Timer.delay(0.02);
+			}
+			else {
+				// We have game data or time out has occured.
+				break;
+			}
+			
+			// If we made it here, then we don't have valid gameData yet and we have not timed out.
 			// Try to get gameData again.
 			gameData = DriverStation.getInstance().getGameSpecificMessage();
 
-			// See DS / FMS testing note above for more details on this.
+			// See DS / FMS testing note above for more details on the following line.
 			gameData = ("NULL".equalsIgnoreCase(gameData)) ? null : gameData;
-			
-			// If needed, delay a bit before possibly checking again.
-			if (gameData == null) {
-				Timer.delay(0.02);
-			}
 		}
 
 		// Check if gameData is still null, if so, then we timed out and need to either call a default autonomous command, or set gameData to something
